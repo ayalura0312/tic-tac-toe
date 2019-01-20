@@ -34,6 +34,49 @@ public class TicTacToe {
             return Evaluation.UnreachableState;
         }
 
+        //MultipleWinners
+        int xWinsCounter = 0;
+        int oWinsCounter = 0;
+        for (int i = 0; i <= 6; i = i + 3) {
+            if (charArray[i] == 'x' || charArray[i] == 'X') {
+                if (charArray[i + 1] == 'x' || charArray[i + 1] == 'X') {
+                    if (charArray[i + 2] == 'x' || charArray[i + 2] == 'X') {
+                        xWinsCounter++;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i <= 2; i++) {
+            if (charArray[i] == 'x' || charArray[i] == 'X') {
+                if (charArray[i + 3] == 'x' || charArray[i + 3] == 'X') {
+                    if (charArray[i + 6] == 'x' || charArray[i + 6] == 'X') {
+                        xWinsCounter++;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i <= 6; i = i + 3) {
+            if (charArray[i] == 'o' || charArray[i] == 'O') {
+                if (charArray[i + 1] == 'o' || charArray[i + 1] == 'O') {
+                    if (charArray[i + 2] == 'o' || charArray[i + 2] == 'O') {
+                        oWinsCounter++;
+                    }
+                }
+            }
+        }
+        for (int i = 0; i <= 2; i++) {
+            if (charArray[i] == 'o' || charArray[i] == 'O') {
+                if (charArray[i + 3] == 'o' || charArray[i + 3] == 'O') {
+                    if (charArray[i + 6] == 'o' || charArray[i + 6] == 'O') {
+                        oWinsCounter++;
+                    }
+                }
+            }
+        }
+        if(xWinsCounter > 0 && oWinsCounter > 0) {
+            return Evaluation.UnreachableState;
+        }
+
 
         //X-Wins
 
