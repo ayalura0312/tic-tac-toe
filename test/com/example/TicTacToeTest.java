@@ -85,7 +85,7 @@ public class TicTacToeTest {
         //vertical X
     @Test
     public void verticalExWinner() throws Exception {
-        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("xo.x..x.."));
+        assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("xo.xo.x.."));
         assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("ox..x..xo"));
         assertEquals(Evaluation.Xwins, TicTacToe.evaluateBoard("..x.oxo.x"));
     }
