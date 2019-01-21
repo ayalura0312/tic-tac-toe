@@ -34,7 +34,7 @@ public class TicTacToe {
             return Evaluation.UnreachableState;
         }
 
-        //MultipleWinners
+            //MultipleWinners
         int xWinsCounter = 0;
         int oWinsCounter = 0;
         for (int i = 0; i <= 6; i = i + 3) {
@@ -77,6 +77,10 @@ public class TicTacToe {
             return Evaluation.UnreachableState;
         }
 
+            //X goes after O wins
+        if(oWinsCounter > 0 && xCounter > oCounter) {
+            return Evaluation.UnreachableState;
+        }
 
         //X-Wins
 

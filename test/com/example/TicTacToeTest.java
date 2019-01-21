@@ -73,6 +73,11 @@ public class TicTacToeTest {
     public void multipleWinnerBoard() throws Exception {
         assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("xoxxooxox"));
     }
+        //x goes after o wins
+    @Test
+    public void xGoesAfterGameIsOverBoard() throws Exception {
+        assertEquals(Evaluation.UnreachableState, TicTacToe.evaluateBoard("x.o.xoxxo"));
+    }
 
     //X-Wins Inputs
         //horizontal X
