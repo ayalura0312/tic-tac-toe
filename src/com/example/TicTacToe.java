@@ -4,6 +4,13 @@ public class TicTacToe {
 
     public static Evaluation evaluateBoard(String boardState) {
 
+        //maximum string length
+        final int MAX_LENGTH = 9;
+        //end position of board
+        final int END_POSITION = 8;
+        //middle position of board
+        final int MIDDLE_POSITION = 4;
+
         //Invalid Input
         if(boardState == null || boardState.length() == 0 || boardState.length() != 9) {
             return Evaluation.InvalidInput;
@@ -27,7 +34,7 @@ public class TicTacToe {
         }
 
         //UnreachableState
-        if (xCounter == 9 || oCounter == 9) {
+        if (xCounter == MAX_LENGTH || oCounter == MAX_LENGTH) {
             return Evaluation.UnreachableState;
         }
         if (oCounter > xCounter || xCounter > oCounter + 1) {
@@ -106,14 +113,14 @@ public class TicTacToe {
         }
             //diagonal
         if (charArray[0] == 'x' || charArray[0] == 'X') {
-            if (charArray[4] == 'x' || charArray[4] == 'X') {
-                if (charArray[8] == 'x' || charArray[8] == 'X') {
+            if (charArray[MIDDLE_POSITION] == 'x' || charArray[MIDDLE_POSITION] == 'X') {
+                if (charArray[END_POSITION] == 'x' || charArray[END_POSITION] == 'X') {
                     return Evaluation.Xwins;
                 }
             }
         }
         if (charArray[2] == 'x' || charArray[2] == 'X') {
-            if (charArray[4] == 'x' || charArray[4] == 'X') {
+            if (charArray[MIDDLE_POSITION] == 'x' || charArray[MIDDLE_POSITION] == 'X') {
                 if (charArray[6] == 'x' || charArray[6] == 'X') {
                     return Evaluation.Xwins;
                 }
@@ -145,14 +152,14 @@ public class TicTacToe {
         }
         //diagonal
         if (charArray[0] == 'o' || charArray[0] == 'O') {
-            if (charArray[4] == 'o' || charArray[4] == 'O') {
+            if (charArray[MIDDLE_POSITION] == 'o' || charArray[MIDDLE_POSITION] == 'O') {
                 if (charArray[8] == 'o' || charArray[8] == 'O') {
                     return Evaluation.Owins;
                 }
             }
         }
         if (charArray[2] == 'o' || charArray[2] == 'O') {
-            if (charArray[4] == 'o' || charArray[4] == 'O') {
+            if (charArray[MIDDLE_POSITION] == 'o' || charArray[MIDDLE_POSITION] == 'O') {
                 if (charArray[6] == 'o' || charArray[6] == 'O') {
                     return Evaluation.Owins;
                 }
