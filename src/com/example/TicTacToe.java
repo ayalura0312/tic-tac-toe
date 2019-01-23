@@ -4,6 +4,9 @@ public class TicTacToe {
 
     public static Evaluation evaluateBoard(String boardState) {
 
+        /**
+         * Constants to describe variables used repeatedly throughout code
+         */
         //maximum string length
         final int MAX_LENGTH = 9;
         //end position of board
@@ -15,12 +18,15 @@ public class TicTacToe {
         //bottom-left corner of board
         final int BOTTOM_LEFT = 6;
 
-        //Invalid Input
+        /**
+         * Invalid Input Tests
+         */
+        //null board, empty board, too short of a string, too long of a string
         if(boardState == null || boardState.length() == 0 || boardState.length() != MAX_LENGTH) {
             return Evaluation.InvalidInput;
         }
 
-        // implement your code here
+        //Tracks the amount of X's, O's and empty spaces in the board
         char[] charArray = boardState.toCharArray();
         int xCounter = 0;
         int oCounter= 0;
@@ -37,21 +43,23 @@ public class TicTacToe {
             }
         }
 
-        //UnreachableState
+        /**
+         * Unreachable State Tests
+         */
+        //all X's / all O's
         if (xCounter == MAX_LENGTH || oCounter == MAX_LENGTH) {
             return Evaluation.UnreachableState;
         }
+        //too many X's / too many O's
         if (oCounter > xCounter || xCounter > oCounter + 1) {
             return Evaluation.UnreachableState;
         }
-        if (emptySpaceCounter == MAX_LENGTH) {
-            return Evaluation.NoWinner;
-        }
 
-            //MultipleWinners
+
+        //multiple winners
         int xWinsCounter = 0;
         int oWinsCounter = 0;
-        for (int i = 0; i <= BOTTOM_LEFT; i = i + 3) {
+        for (int i = 0; i <= 6; i = i + 3) {
             if (charArray[i] == 'x' || charArray[i] == 'X') {
                 if (charArray[i + 1] == 'x' || charArray[i + 1] == 'X') {
                     if (charArray[i + 2] == 'x' || charArray[i + 2] == 'X') {
@@ -60,7 +68,7 @@ public class TicTacToe {
                 }
             }
         }
-        for (int i = 0; i <= TOP_RIGHT; i++) {
+        for (int i = 0; i <= 2; i++) {
             if (charArray[i] == 'x' || charArray[i] == 'X') {
                 if (charArray[i + 3] == 'x' || charArray[i + 3] == 'X') {
                     if (charArray[i + 6] == 'x' || charArray[i + 6] == 'X') {
@@ -69,7 +77,7 @@ public class TicTacToe {
                 }
             }
         }
-        for (int i = 0; i <= BOTTOM_LEFT; i = i + 3) {
+        for (int i = 0; i <= 6; i = i + 3) {
             if (charArray[i] == 'o' || charArray[i] == 'O') {
                 if (charArray[i + 1] == 'o' || charArray[i + 1] == 'O') {
                     if (charArray[i + 2] == 'o' || charArray[i + 2] == 'O') {
@@ -78,7 +86,7 @@ public class TicTacToe {
                 }
             }
         }
-        for (int i = 0; i <= TOP_RIGHT; i++) {
+        for (int i = 0; i <= 2; i++) {
             if (charArray[i] == 'o' || charArray[i] == 'O') {
                 if (charArray[i + 3] == 'o' || charArray[i + 3] == 'O') {
                     if (charArray[i + 6] == 'o' || charArray[i + 6] == 'O') {
@@ -91,15 +99,16 @@ public class TicTacToe {
             return Evaluation.UnreachableState;
         }
 
-            //X goes after O wins
+        //X goes after O wins
         if(oWinsCounter > 0 && xCounter > oCounter) {
             return Evaluation.UnreachableState;
         }
 
-        //X-Wins
-
-            //horizontal
-        for (int i = 0; i <= BOTTOM_LEFT; i = i + 3) {
+        /**
+         * X Wins Tests
+         */
+        //horizontal
+        for (int i = 0; i <= 6; i = i + 3) {
             if (charArray[i] == 'x' || charArray[i] == 'X') {
                 if (charArray[i + 1] == 'x' || charArray[i + 1] == 'X') {
                     if (charArray[i + 2] == 'x' || charArray[i + 2] == 'X') {
@@ -108,8 +117,8 @@ public class TicTacToe {
                 }
             }
         }
-            //vertical
-        for (int i = 0; i <= TOP_RIGHT; i++) {
+        //vertical
+        for (int i = 0; i <= 2; i++) {
             if (charArray[i] == 'x' || charArray[i] == 'X') {
                 if (charArray[i + 3] == 'x' || charArray[i + 3] == 'X') {
                     if (charArray[i + 6] == 'x' || charArray[i + 6] == 'X') {
@@ -118,7 +127,7 @@ public class TicTacToe {
                 }
             }
         }
-            //diagonal
+        //diagonal
         if (charArray[0] == 'x' || charArray[0] == 'X') {
             if (charArray[MIDDLE_POSITION] == 'x' || charArray[MIDDLE_POSITION] == 'X') {
                 if (charArray[END_POSITION] == 'x' || charArray[END_POSITION] == 'X') {
@@ -135,10 +144,11 @@ public class TicTacToe {
         }
 
 
-        //O-Wins
-
+        /**
+         * O Wins Tests
+         */
         //horizontal
-        for (int i = 0; i <= BOTTOM_LEFT; i = i + 3) {
+        for (int i = 0; i <= 6; i = i + 3) {
             if (charArray[i] == 'o' || charArray[i] == 'O') {
                 if (charArray[i + 1] == 'o' || charArray[i + 1] == 'O') {
                     if (charArray[i + 2] == 'o' || charArray[i + 2] == 'O') {
@@ -148,7 +158,7 @@ public class TicTacToe {
             }
         }
         //vertical
-        for (int i = 0; i <= TOP_RIGHT; i++) {
+        for (int i = 0; i <= 2; i++) {
             if (charArray[i] == 'o' || charArray[i] == 'O') {
                 if (charArray[i + 3] == 'o' || charArray[i + 3] == 'O') {
                     if (charArray[i + 6] == 'o' || charArray[i + 6] == 'O') {
@@ -173,7 +183,13 @@ public class TicTacToe {
             }
         }
 
-        //No Winner
+        /**
+         * No Winner Tests
+         */
+        //empty board
+        if (emptySpaceCounter == MAX_LENGTH) {
+            return Evaluation.NoWinner;
+        }
         return Evaluation.NoWinner;
     }
 }
